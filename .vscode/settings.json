@@ -1,0 +1,9 @@
+{
+  "[python]": {
+    "editor.rulers": [120],
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "[django-html]": {
+    "editor.defaultFormatter": "monosans.djlint"
+  }
+}
