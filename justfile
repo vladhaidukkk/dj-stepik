@@ -13,6 +13,13 @@ manage command *params:
 start-app name:
     @just manage startapp {{name}}
 
+# Startup commands
+shell:
+    @just manage shell -i ipython
+
+serve port="8000":
+    @just manage runserver {{port}}
+
 # Code quality commands
 fmt:
     uv run ruff format
