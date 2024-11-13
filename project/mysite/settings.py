@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+if not DEBUG:
+    # SECURITY WARNING: it's not needed in production!
+    ALLOWED_HOSTS.append("127.0.0.1")
+
 
 # Application definition
 
