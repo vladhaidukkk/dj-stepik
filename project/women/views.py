@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 def index(request):
-    return HttpResponse("<h1>Index page</h1>")
+    return render(request, "women/index.html")
 
 
 def categories(request):
