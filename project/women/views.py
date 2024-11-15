@@ -1,10 +1,11 @@
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import timezone
 
-famous_women = [
+women = [
     {
+        "slug": "ada-lovelace",
         "name": "Ada Lovelace",
         "profession": "Mathematician and writer",
         "birth_year": 1815,
@@ -12,6 +13,7 @@ famous_women = [
         "is_published": True,
     },
     {
+        "slug": "marie-curie",
         "name": "Marie Curie",
         "profession": "Physicist and chemist",
         "birth_year": 1867,
@@ -19,6 +21,7 @@ famous_women = [
         "is_published": False,
     },
     {
+        "slug": "rosalind-franklin",
         "name": "Rosalind Franklin",
         "profession": "Chemist",
         "birth_year": 1920,
@@ -29,8 +32,17 @@ famous_women = [
 
 
 def index(request):
-    context = {"title": "Index Page", "famous_women": famous_women}
+    context = {"title": "Index Page", "women": women}
     return render(request, "women/index.html", context)
+
+
+def detail(request, woman_slug):
+    woman = next((woman for woman in women if woman["slug"] == woman_slug), None)
+    if not woman:
+        raise Http404("Woman with this slug doesn't exist")
+
+    context = {"title": woman["name"], "woman": woman}
+    return render(request, "women/detail.html", context)
 
 
 def categories(request):

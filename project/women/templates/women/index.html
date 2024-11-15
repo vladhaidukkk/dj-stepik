@@ -8,12 +8,15 @@
     <body>
         <h1>Index Page</h1>
         <ul>
-            {% for woman in famous_women %}
+            {% for woman in women %}
                 {% if woman.is_published %}
                     <li>
                         {% if not forloop.first %}<hr>{% endif %}
                         <h2>{{ woman.name }}</h2>
                         <p>{{ woman.profession }}</p>
+                        <div>
+                            <a href="{% url 'women:detail' woman.slug %}">View</a>
+                        </div>
                     </li>
                 {% endif %}
             {% endfor %}
