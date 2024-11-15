@@ -31,9 +31,9 @@ women = [
 ]
 
 
-def index(request):
-    context = {"title": "Index Page", "women": women}
-    return render(request, "women/index.html", context)
+def home(request):
+    context = {"women": women}
+    return render(request, "women/home.html", context)
 
 
 def detail(request, woman_slug):
@@ -41,7 +41,7 @@ def detail(request, woman_slug):
     if not woman:
         raise Http404("Woman with this slug doesn't exist")
 
-    context = {"title": woman["name"], "woman": woman}
+    context = {"woman": woman}
     return render(request, "women/detail.html", context)
 
 
