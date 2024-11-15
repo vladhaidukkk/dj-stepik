@@ -3,9 +3,33 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import timezone
 
+famous_women = [
+    {
+        "name": "Ada Lovelace",
+        "profession": "Mathematician and writer",
+        "birth_year": 1815,
+        "death_year": 1852,
+        "is_published": True,
+    },
+    {
+        "name": "Marie Curie",
+        "profession": "Physicist and chemist",
+        "birth_year": 1867,
+        "death_year": 1934,
+        "is_published": False,
+    },
+    {
+        "name": "Rosalind Franklin",
+        "profession": "Chemist",
+        "birth_year": 1920,
+        "death_year": 1958,
+        "is_published": True,
+    },
+]
+
 
 def index(request):
-    context = {"title": "Index Page"}
+    context = {"title": "Index Page", "famous_women": famous_women}
     return render(request, "women/index.html", context)
 
 
