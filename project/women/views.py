@@ -1,7 +1,5 @@
-from django.http import Http404, HttpResponse
-from django.shortcuts import redirect, render
-from django.urls import reverse
-from django.utils import timezone
+from django.http import Http404
+from django.shortcuts import render
 
 women = [
     {
@@ -36,6 +34,10 @@ def home(request):
     return render(request, "women/index.html", context)
 
 
+def about(request):
+    return render(request, "women/about.html")
+
+
 def detail(request, woman_slug):
     woman = next((woman for woman in women if woman["slug"] == woman_slug), None)
     if not woman:
@@ -43,23 +45,3 @@ def detail(request, woman_slug):
 
     context = {"woman": woman}
     return render(request, "women/detail.html", context)
-
-
-def categories(request):
-    return HttpResponse("<h1>Categories page</h1>")
-
-
-def category_by_id(request, cat_id):
-    return HttpResponse(f"<h1>Category page</h1><p>id: {cat_id}</p>")
-
-
-def category_by_slug(request, cat_slug):
-    return HttpResponse(f"<h1>Category page</h1><p>slug: {cat_slug}</p>")
-
-
-def categories_archive(request, year):
-    current_year = timezone.now().year
-    if current_year < year:
-        uri = reverse("categories_archive", kwargs={"year": current_year})
-        return redirect(uri)
-    return HttpResponse(f"<h1>Categories archieve page</h1><p>year: {year}</p>")
