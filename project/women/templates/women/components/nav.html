@@ -1,7 +1,14 @@
-<nav>
-    <ul>
-        <li>
-            <a href="{% url 'women:home' %}">Home</a>
-        </li>
-    </ul>
+<nav class="navbar navbar-light bg-light">
+    <div class="container justify-content-center">
+        <ul class="nav nav-pills">
+            {% url 'women:home' as home_url %}
+            <li class="nav-item">
+                <a href="{{ home_url }}"
+                   class="nav-link {% if request.path == home_url %}active{% endif %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">About</a>
+            </li>
+        </ul>
+    </div>
 </nav>

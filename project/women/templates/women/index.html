@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %}Home{% endblock %}
-{% block content %}
+{% block header %}
     {% include "women/components/nav.html" %}
+{% endblock %}
+{% block content %}
     <ul>
         {% for woman in women %}
             {% if woman.is_published %}
