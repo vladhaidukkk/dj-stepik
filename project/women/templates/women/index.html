@@ -2,18 +2,18 @@
 
 {% block title %}Home{% endblock %}
 {% block content %}
-    <ul>
+    <div class="row row-cols-3 gap-3">
         {% for woman in women %}
             {% if woman.is_published %}
-                <li>
-                    {% if not forloop.first %}<hr>{% endif %}
-                    <h2>{{ woman.name }}</h2>
-                    <p>{{ woman.profession }}</p>
-                    <div>
-                        <a href="{% url 'women:detail' woman.slug %}">View</a>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ woman.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ woman.profession }}</h6>
+                        <p class="card-text">{{ woman.description|truncatewords:15 }}</p>
+                        <a href="{% url 'women:detail' woman.slug %}" class="card-link">View</a>
                     </div>
-                </li>
+                </div>
             {% endif %}
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

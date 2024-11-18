@@ -2,13 +2,17 @@
 
 {% block title %}{{ woman.name }}{% endblock %}
 {% block content %}
-    <h1>{{ woman.name }}</h1>
-    <p>{{ woman.profession }}</p>
     <div>
-        {% if woman.death_year %}
-            {{ woman.birth_year }} - {{ woman.death_year }}
-        {% else %}
-            {{ woman.birth_year }}
-        {% endif %}
+        <h1>{{ woman.name }}</h1>
+        <h5 class="mb-2 text-muted">{{ woman.profession }}</h5>
+        <p>
+            {% if woman.death_year %}
+                {{ woman.birth_year }} - {{ woman.death_year }}
+            {% else %}
+                {{ woman.birth_year }}
+            {% endif %}
+        </p>
+        <p class="lead">{{ woman.description }}</p>
+        <a href="{% url 'women:home' %}" class="btn btn-secondary">Back to List</a>
     </div>
 {% endblock %}
