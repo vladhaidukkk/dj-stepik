@@ -33,7 +33,7 @@ women = [
 
 def home(request):
     context = {"women": women}
-    return render(request, "women/home.html", context)
+    return render(request, "women/index.html", context)
 
 
 def detail(request, woman_slug):
