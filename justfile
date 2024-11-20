@@ -20,6 +20,16 @@ shell:
 serve port="8000":
     @just manage runserver {{port}}
 
+# Migrations management commands
+make-migrations app="":
+    @just manage makemigrations {{app}}
+
+show-sql app name="":
+    @just manage sqlmigrate {{app}} {{name}}
+
+migrate app="" name="":
+    @just manage migrate {{app}} {{name}}
+
 # Code quality commands
 fmt:
     uv run ruff format
