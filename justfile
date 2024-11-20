@@ -15,7 +15,7 @@ start-app name:
 
 # Startup commands
 shell:
-    @just manage shell -i ipython
+    @just manage shell_plus --ipython --print-sql
 
 serve port="8000":
     @just manage runserver {{port}}
