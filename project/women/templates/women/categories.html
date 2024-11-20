@@ -1,0 +1,14 @@
+{% load women %}
+
+<ul>
+    {% get_categories as categories %}
+    {% for category in categories %}
+        <li>
+            {% if category == selected_category %}
+                <a href="{% url 'women:category' category %}" class="text-primary">{{ category|capfirst }}</a>
+            {% else %}
+                <a href="{% url 'women:category' category %}" class="text-dark">{{ category|capfirst }}</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

@@ -1,6 +1,8 @@
 from django.http import Http404
 from django.shortcuts import render
 
+categories = ["mathematics", "physics", "chemistry", "biology", "astronomy"]
+
 women = [
     {
         "slug": "ada-lovelace",
@@ -11,6 +13,7 @@ women = [
             "mechanical general-purpose computer, the Analytical Engine. She recognized the machine's potential beyond "
             "mere calculation and envisioned its use for more complex tasks."
         ),
+        "categories": ["mathematics", "writer"],
         "birth_year": 1815,
         "death_year": 1852,
         "is_published": True,
@@ -24,6 +27,7 @@ women = [
             "to win a Nobel Prize and remains the only person to win Nobel Prizes in two different scientific "
             "fields: Physics and Chemistry."
         ),
+        "categories": ["physics", "chemistry"],
         "birth_year": 1867,
         "death_year": 1934,
         "is_published": False,
@@ -37,6 +41,7 @@ women = [
             "DNA double helix. Her contributions to molecular biology were significant, and she is now recognized as a "
             "key figure in the field."
         ),
+        "categories": ["chemistry"],
         "birth_year": 1920,
         "death_year": 1958,
         "is_published": True,
@@ -44,9 +49,15 @@ women = [
 ]
 
 
-def home(request):
-    context = {"women": women}
+def home(request, category_name=None):
+    print(category_name)
+    filtered_women = [w for w in women if category_name in w["categories"]] if category_name else women
+    context = {"selected_category": category_name, "women": filtered_women}
     return render(request, "women/index.html", context)
+
+
+def category(request, category_name):
+    return home(request, category_name)
 
 
 def about(request):

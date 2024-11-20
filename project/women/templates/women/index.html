@@ -1,19 +1,24 @@
 {% extends "base.html" %}
 
+{% load women %}
+
 {% block title %}Home{% endblock %}
 {% block content %}
-    <div class="row row-cols-3 gap-3">
-        {% for woman in women %}
-            {% if woman.is_published %}
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ woman.name }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ woman.profession }}</h6>
-                        <p class="card-text">{{ woman.description|truncatewords:15 }}</p>
-                        <a href="{% url 'women:detail' woman.slug %}" class="card-link">View</a>
+    <div class="row row-cols-4">
+        <div class="col col-3">{% show_categories selected_category %}</div>
+        <div class="row row-cols-3 gap-3 col col-9">
+            {% for woman in women %}
+                {% if woman.is_published %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ woman.name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ woman.profession }}</h6>
+                            <p class="card-text">{{ woman.description|truncatewords:15 }}</p>
+                            <a href="{% url 'women:detail' woman.slug %}" class="card-link">View</a>
+                        </div>
                     </div>
-                </div>
-            {% endif %}
-        {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
